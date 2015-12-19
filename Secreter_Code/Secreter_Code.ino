@@ -1,78 +1,107 @@
-boolean test = false;
-int counter = 10;
-int a = 5;
+boolean incorrect = false;
+
+int lightA = 12;
+int lightB = 11;
+
+int buttonA = 3;
+int buttonB = 2;
+
 void setup() {
-  pinMode(12, OUTPUT);
-  pinMode(11, OUTPUT);
-  pinMode(2, INPUT);
-  pinMode(3, INPUT);
+  pinMode(lightA, OUTPUT);
+  pinMode(lightB, OUTPUT);
+  pinMode(buttonA, INPUT);
+  pinMode(buttonB, INPUT);
 }
 
 void loop() {
-     while((digitalRead(3) == LOW) && digitalRead(2) == LOW)
-    {delay(10);}
-  if(digitalRead(3) == HIGH){
-    digitalWrite(12, HIGH);
+  while((digitalRead(buttonA) == LOW) && (digitalRead(buttonB) == LOW))
+  {
+    delay(10);
+  }
+  if(digitalRead(buttonA) == HIGH)
+  {
+    digitalWrite(lightA, HIGH);
     delay(500);
-    digitalWrite(12, LOW);
-    while((digitalRead(3) == LOW) && digitalRead(2) == LOW)
-    {delay(10);}
-  if(digitalRead(2) == HIGH){
-     digitalWrite(11, HIGH);
-     delay(500);
-     digitalWrite(11, LOW);
-     while((digitalRead(3) == LOW) && digitalRead(2) == LOW)
-    {delay(10);}
-     if(digitalRead(2) == HIGH){
-        digitalWrite(11, HIGH);
+    digitalWrite(lightA, LOW);
+    while((digitalRead(buttonA) == LOW) && (digitalRead(buttonB) == LOW))
+    {
+      delay(10);
+    }
+    if(digitalRead(buttonB) == HIGH)
+    {
+      digitalWrite(lightB, HIGH);
+      delay(500);
+      digitalWrite(lightB, LOW);
+      while((digitalRead(buttonA) == LOW) && (digitalRead(buttonB) == LOW))
+      {
+        delay(10);
+      }
+      if(digitalRead(buttonB) == HIGH)
+      {
+        digitalWrite(lightB, HIGH);
         delay(500);
-        digitalWrite(11, LOW);
-        while((digitalRead(3) == LOW) && digitalRead(2) == LOW)
-         {delay(10);}
-        if(digitalRead(2) == HIGH){
-            digitalWrite(11, HIGH);
-            delay(500);
-            digitalWrite(11, LOW);
-            while((digitalRead(3) == LOW) && digitalRead(2) == LOW)
-             {delay(10);}
-            if(digitalRead(3) == HIGH){
-               digitalWrite(12, HIGH);
-              delay(500);
-              digitalWrite(12, LOW);
-              digitalWrite(12, HIGH);
-              digitalWrite(11, HIGH);
-              for(int i = 1; i > 0; i++){
-                delay(10);}
-            }
-          else{
-        test = true;
-      }
-          
-          }
-          else{
-        test = true;
-      }
+        digitalWrite(lightB, LOW);
+        while((digitalRead(buttonA) == LOW) && (digitalRead(buttonB) == LOW))
+        {
+          delay(10);
         }
-        else{
-        test = true;
+        if(digitalRead(buttonB) == HIGH)
+        {
+          digitalWrite(lightB, HIGH);
+          delay(500);
+          digitalWrite(lightB, LOW);
+          while((digitalRead(buttonA) == LOW) && (digitalRead(buttonB) == LOW))
+          {
+            delay(10);
+          }
+          if(digitalRead(buttonA) == HIGH)
+          {
+            digitalWrite(lightA, HIGH);
+            delay(500);
+            digitalWrite(lightA, LOW);
+            delay(100);
+            digitalWrite(lightA, HIGH);
+            digitalWrite(lightB, HIGH);
+            for(int i = 1; i > 0; i++)
+            {
+              delay(10);
+            }
+          }
+          else
+          {
+            incorrect = true;
+          }
+        }
+        else
+        {
+          incorrect = true;
+        }
       }
-      }
-      else{
-        test = true;
+      else
+      {
+        incorrect = true;
       }
     }
-    else{
-        test = true;
-      }
-    if(test == true){
-    for(int i = 1; i < 20; i++){
-    digitalWrite(12, HIGH);
-    digitalWrite(11, HIGH);
-    delay(40);
-    digitalWrite(12, LOW);
-    digitalWrite(11, LOW);
-    delay(40);
-    test = false;
+    else
+    {
+      incorrect = true;
+    }
+  }
+  else
+  {
+    incorrect = true;
+  }
+  if(incorrect == true)
+  {
+    for(int i = 1; i < 20; i++)
+    {
+      digitalWrite(12, HIGH);
+      digitalWrite(11, HIGH);
+      delay(40);
+      digitalWrite(12, LOW);
+      digitalWrite(11, LOW);
+      delay(40);
+      incorrect = false;
     }
   }
 }
