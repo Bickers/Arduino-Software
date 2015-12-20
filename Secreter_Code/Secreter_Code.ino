@@ -3,8 +3,8 @@ boolean incorrect = false;  //for detecting an error
 int lightA = 12;  //output light pins
 int lightB = 11;
 
-int option[] = {3, 2, 2, 2, 3};
-
+int option[] = {2, 2, 3, 2, 3, 2, 2, 3, 2};
+int numoptions = 9;
 int buttonA = 3;  //input button pins
 int buttonB = 2;
 
@@ -22,7 +22,7 @@ void(*resetFunc)(void) = 0;
 
 void loop() 
 {
-  for(int i = 0; i < 5; i++)
+  for(int i = 0; i < numoptions; i++)
   {
     while((digitalRead(buttonA) == LOW) && (digitalRead(buttonB) == LOW)) //while loop continuosly delays until a button is pressed
     {
